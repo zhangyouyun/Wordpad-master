@@ -40,6 +40,7 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
     private ArrayList<ButtonItem> item = new ArrayList<>();
     private Context mContext;
     private PaintView mPaintView;
+//    private PaintView1 mPaintView1;
     private Boolean isEarse = false;
     private int select_handwrite_size_index = 0;
     private Bitmap mSignBitmap = null;

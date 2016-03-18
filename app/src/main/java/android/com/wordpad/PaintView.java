@@ -49,7 +49,7 @@ public class PaintView extends View {
     private String PngPath = Environment.getExternalStorageDirectory() + File.separator + "rj.png";
     //txt路径
     private String txt = Environment.getExternalStorageDirectory() + File.separator
-            +System.currentTimeMillis()+ "rj.txt";
+            + "rj.txt";
     private String json = "";
     private Bitmap mBitmap;
     private Canvas mCanvas;
@@ -641,6 +641,18 @@ public class PaintView extends View {
             }
             //进行剪切出 画图部分
             if (xmax > 0 && ymax > 0) {
+                if(xmin<0){
+                    xmin=0;
+                }
+                if(ymin<0){
+                    ymin=0;
+                }
+                if(xmax>screenWidth){
+                    xmax=screenWidth;
+                }
+                if(ymax>screenHeight){
+                    ymax=screenHeight;
+                }
                 Bitmap bitmap = Bitmap.createBitmap(mBitmap, (int) xmin, (int) ymin,
                         (int) (xmax - xmin), (int) (ymax - ymin));
                 FileOutputStream fos = new FileOutputStream(new File(PngPath));
@@ -768,7 +780,12 @@ public class PaintView extends View {
     public void wrap() {
         if (savePoint.size() > 0) {
             //对x，y的最大最小值的初始化
-            PointF first = savePoint.get(0).get(0);
+            PointF first = null;
+            try {
+                first = savePoint.get(0).get(0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             xmax = first.getX();
             xmin = ymax;
             ymax = first.getY();
