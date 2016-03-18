@@ -100,6 +100,8 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
 
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(mContext);
         horizontalScrollView.setLayoutParams(ScrollView);
+        horizontalScrollView.setSmoothScrollingEnabled(true);
+        horizontalScrollView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_INSET);
         horizontalScrollView.addView(buttonLayout);
 
         this.addView(horizontalScrollView);
