@@ -48,7 +48,6 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
     private String json = "";
     private Bitmap mBitmap;
     private float x, y;
-//    public SnowView snowView;
     public CustomButton(Context context) {
         super(context);
         mContext = context;
@@ -70,26 +69,29 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
 //        return line;
 //    }
     public void OuterLayout() {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        this.setOrientation(LinearLayout.VERTICAL);
-        this.setLayoutParams(params);
-        this.setBackgroundColor(Color.WHITE);
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+//        this.setOrientation(LinearLayout.VERTICAL);
+//        this.setLayoutParams(params);
+//        this.setBackgroundColor(Color.WHITE);
 
         WindowManager manager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(dm);
         mPaintView = new PaintView(mContext, dm.widthPixels, dm.heightPixels);
+        setOrientation(LinearLayout.VERTICAL);
+        setLayoutParams(new LinearLayout.LayoutParams(-1, -1));
 
-//        snowView=new SnowView(mContext);
     }
 
     public void CreateLayout(ArrayList<ButtonItem> buttonItem) {
         /*当前屏幕长度宽度*/
         item = buttonItem;
-        /*按钮*/
+        /*外面的布局*/
         LinearLayout buttonLayout = new LinearLayout(mContext);
         LinearLayout.LayoutParams buttonparams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT);
+
+      /*  画笔存在问题*/
         LinearLayout.LayoutParams ScrollView = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT);
         buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -101,10 +103,10 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
         }
         buttonLayout.setBackground(getResources().getDrawable(R.drawable.normal));
 
+        /*滚动条*/
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(mContext);
         horizontalScrollView.setLayoutParams(ScrollView);
         horizontalScrollView.setSmoothScrollingEnabled(true);
-//        horizontalScrollView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_INSET);
         horizontalScrollView.addView(buttonLayout);
 
         this.addView(horizontalScrollView);
@@ -114,11 +116,12 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
 
     public View getItemView(final ButtonItem buttonitem) {
         LinearLayout layout = new LinearLayout(mContext);
-        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT);
         layout.setOrientation(LinearLayout.HORIZONTAL);
         layout.setLayoutParams(params1);
-        layout.setPadding(10, 15, 10, 15);
+        layout.setPadding(DensityUtil.px2dip(mContext,10), DensityUtil.px2dip(mContext,10),
+                DensityUtil.px2dip(mContext,10), DensityUtil.px2dip(mContext,10));
 
         Button button = new Button(mContext);
         button.setText(buttonitem.getButtonName());
