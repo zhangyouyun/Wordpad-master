@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
         ArrayList<ButtonItem> buttonList = new ArrayList<>();
         ButtonItem buttonItem = new ButtonItem();
         buttonItem.setButtonName("保存");
-        buttonItem.setButtonSize(font);
+//        buttonItem.setButtonSize(font);
         buttonItem.setButtonColor(Color.BLACK);
         buttonItem.setId(1);
 //        buttonItem.setButtonHeight(180);
@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
 //--------------------------
         ButtonItem buttonItem1 = new ButtonItem();
         buttonItem1.setButtonName("大小");
-        buttonItem1.setButtonSize(font);
+//        buttonItem1.setButtonSize(font);
         buttonItem1.setButtonColor(Color.BLACK);
         buttonItem1.setId(2);
 //        buttonItem1.setButtonHeight(180);
@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
 //--------------------------
         ButtonItem buttonItem2 = new ButtonItem();
         buttonItem2.setButtonName("颜色");
-        buttonItem2.setButtonSize(font);
+//        buttonItem2.setButtonSize(font);
         buttonItem2.setButtonColor(Color.BLACK);
         buttonItem2.setId(3);
 //        buttonItem2.setButtonHeight(180);
