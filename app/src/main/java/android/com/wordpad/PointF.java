@@ -3,7 +3,8 @@ package android.com.wordpad;
 /**
  * Created by Administrator on 2016/3/11.
  */
-public class PointF {
+public class
+        PointF {
     float x;
     float y;
 

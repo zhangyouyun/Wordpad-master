@@ -40,6 +40,7 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
     private ArrayList<ButtonItem> item = new ArrayList<>();
     private Context mContext;
     private PaintView mPaintView;
+
 //    private PaintView1 mPaintView1;
     private Boolean isEarse = false;
     private int select_handwrite_size_index = 0;
@@ -73,10 +74,12 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
         this.setOrientation(LinearLayout.VERTICAL);
         this.setLayoutParams(params);
         this.setBackgroundColor(Color.WHITE);
+
         WindowManager manager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(dm);
         mPaintView = new PaintView(mContext, dm.widthPixels, dm.heightPixels);
+
 //        snowView=new SnowView(mContext);
     }
 
@@ -86,9 +89,9 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
         /*按钮*/
         LinearLayout buttonLayout = new LinearLayout(mContext);
         LinearLayout.LayoutParams buttonparams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT);
+                LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams ScrollView = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT);
+                LayoutParams.WRAP_CONTENT);
         buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
         buttonLayout.setLayoutParams(buttonparams);
         buttonLayout.setBackgroundColor(Color.WHITE);
@@ -101,7 +104,7 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(mContext);
         horizontalScrollView.setLayoutParams(ScrollView);
         horizontalScrollView.setSmoothScrollingEnabled(true);
-        horizontalScrollView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_INSET);
+//        horizontalScrollView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_INSET);
         horizontalScrollView.addView(buttonLayout);
 
         this.addView(horizontalScrollView);
@@ -112,7 +115,7 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
     public View getItemView(final ButtonItem buttonitem) {
         LinearLayout layout = new LinearLayout(mContext);
         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT);
+                LayoutParams.WRAP_CONTENT);
         layout.setOrientation(LinearLayout.HORIZONTAL);
         layout.setLayoutParams(params1);
         layout.setPadding(10, 15, 10, 15);
@@ -203,24 +206,6 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
                 break;
         }
     }
-
-    //    class MyNetWorkTask extends AsyncTask<String, Void, String> {
-//        protected void onPreExecute() {
-//
-//        }
-//
-//        protected String doInBackground(String... params) {
-//            String result = null;
-//            try {
-//
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//            } finally {
-//
-//            }
-//            return result;
-//        }
-//    }
     //正常的回调接口
     public interface ButtonListener {
         void showTip(ButtonItem buttonItem);

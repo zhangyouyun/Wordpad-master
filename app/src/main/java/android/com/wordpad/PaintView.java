@@ -75,21 +75,13 @@ public class PaintView extends View {
     private List<PointF> points = new ArrayList<>();
 
     private List<List<PointF>> savePoint = new ArrayList<>();
-    private List<List<List<PointF>>> deletePointsPath = new ArrayList<>();
-    private List<List<PointF>> lastPointsPath = new ArrayList<>();
+    private List<List<List<PointF>>> deletePoints = new ArrayList<>();
+    private List<List<PointF>> lastPoints = new ArrayList<>();
     private float xmax = 0, xmin = 0, ymax = 0, ymin = 0;
     Bitmap Erase;
 
     Bitmap mSignatureBitmap = null;
-    Canvas mSignatureBitmapCanvas = null;
-    private RectF mDirtyRect;
-    private float mVelocityFilterWeight;
-    private float mLastVelocity;
-    private float mMinWidth;
-    private float mMaxWidth;
-    private float mLastWidth;
-    private boolean mIsEmpty;
-    private OnSignedListener mOnSignedListener;
+//    private TableView tableView;
     public PaintView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
@@ -158,8 +150,13 @@ public class PaintView extends View {
                 MoveErase(canvas);
             }
         }
+//        tableView=new TableView(mContext,5,5);
 //        addBgLine(canvas);
+
+
     }
+    
+
     /* 移动橡皮擦*/
     public void MoveErase(Canvas canvas) {
         //移动时，显示画笔图标
@@ -257,7 +254,7 @@ public class PaintView extends View {
 
             List<List<PointF>> deletePointPathItem = new ArrayList<>();
             deletePointPathItem.add(savePoint.get(savePoint.size() - 1));
-            deletePointsPath.add(deletePointPathItem);
+            deletePoints.add(deletePointPathItem);
             savePoint.remove(savePoint.size() - 1);
             redrawOnBitmap();
         }
@@ -274,7 +271,7 @@ public class PaintView extends View {
 
             List<List<PointF>> deletePointPathItem = new ArrayList<>();
             deletePointPathItem.addAll(savePoint);
-            deletePointsPath.add(deletePointPathItem);
+            deletePoints.add(deletePointPathItem);
             savePoint.clear();
             savePath.clear();
             redrawOnBitmap();
@@ -294,7 +291,7 @@ public class PaintView extends View {
             savePath.clear();
             deletePath.clear();
             savePoint.clear();
-            deletePointsPath.clear();
+            deletePoints.clear();
             redrawOnBitmap();
         }
     }
@@ -309,7 +306,7 @@ public class PaintView extends View {
             savePath.clear();
             deletePath.clear();
             savePoint.clear();
-            deletePointsPath.clear();
+            deletePoints.clear();
             readTxtFile();
         }
     }
@@ -322,8 +319,8 @@ public class PaintView extends View {
         if (deletePath != null && deletePath.size() > 0) {
             savePath.addAll(deletePath.get(deletePath.size() - 1));
             deletePath.remove(deletePath.size() - 1);
-            savePoint.addAll(deletePointsPath.get(size - 1));
-            deletePointsPath.remove(size - 1);
+            savePoint.addAll(deletePoints.get(size - 1));
+            deletePoints.remove(size - 1);
             redrawOnBitmap();
         }
     }
@@ -494,20 +491,18 @@ public class PaintView extends View {
                 Bitmap bitmap = Bitmap.createBitmap(mBitmap, (int) xmin, (int) ymin,
                         (int) (xmax - xmin), (int) (ymax - ymin));
                 FileOutputStream fos = new FileOutputStream(new File(PngPath));
-//                ByteArrayOutputStream baos = new ByteArrayOutputStream(new File(PngPath));
-//                baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
 //                byte[] b = baos.toByteArray();
 //                if (b != null) {
 //                    fos.write(b);
 //                }
-
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream(new File(PngPath));
+//                baos = new ByteArrayOutputStream();
                 fos.flush();
                 fos.close();
                 //存放数组数据的文件
                 File file = new File(txt);
-                //文件写入流
-                FileWriter out = new FileWriter(file);
+                FileWriter out = new FileWriter(file);//文件写入流
                 out.write(json);
                 out.close();
             }
@@ -530,17 +525,17 @@ public class PaintView extends View {
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 //接收的json
                 String json = "";
-                String lineTxt = null;
-                while ((lineTxt = br.readLine()) != null) {
-                    json = json + lineTxt;
-                    Log.i("txt1", json);
+                String Txt = null;
+                while ((Txt = br.readLine()) != null) {
+                    json = json + Txt;
+//                    Log.i("txt1", json);
                 }
                 br.close();
-                lastPointsPath = JSON.parseObject(json, new TypeReference<List<List<PointF>>>() {
+                lastPoints = JSON.parseObject(json, new TypeReference<List<List<PointF>>>() {
                 });
-                Log.e("txt2", "lastPointsPath" + lastPointsPath);
-                savePoint.addAll(lastPointsPath);
-                drawPath(lastPointsPath);
+                Log.e("txt2", "lastPointsPath" + lastPoints);
+                savePoint.addAll(lastPoints);
+                drawPath(lastPoints);
             } else {
                 System.out.println("找不到指定的文件");
             }
@@ -590,9 +585,6 @@ public class PaintView extends View {
                     PointF pointF = iterItem.next();
                     if (((y - 30) < pointF.getY() && (y + 30) > pointF.getY())
                             && ((x - 30) < pointF.getX() && (x + 30) > pointF.getX())) {
-//                        Log.e("》》uuuuuu", "num=" + num);
-
-
                         List<DrawPath> deletePathItem = new ArrayList<>();
                         deletePathItem.add(savePath.get(num));
                         deletePath.add(deletePathItem);
@@ -600,12 +592,11 @@ public class PaintView extends View {
 
                         List<List<PointF>> deletePointPathItem = new ArrayList<>();
                         deletePointPathItem.add(savePoint.get(num));
-                        deletePointsPath.add(deletePointPathItem);
+                        deletePoints.add(deletePointPathItem);
                         savePoint.remove(num);
                         redrawOnBitmap();
                         return;
-                    }
-                    ;
+                    };
                 }
                 num++;
             }
