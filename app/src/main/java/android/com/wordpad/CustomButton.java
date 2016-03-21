@@ -79,7 +79,8 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
         manager.getDefaultDisplay().getMetrics(dm);
         mPaintView = new PaintView(mContext, dm.widthPixels, dm.heightPixels);
         setOrientation(LinearLayout.VERTICAL);
-        setLayoutParams(new LinearLayout.LayoutParams(-1, -1));
+        setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT));
 
     }
 
@@ -88,7 +89,7 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
         item = buttonItem;
         /*外面的布局*/
         LinearLayout buttonLayout = new LinearLayout(mContext);
-        LinearLayout.LayoutParams buttonparams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+        LinearLayout.LayoutParams buttonparams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT);
 
       /*  画笔存在问题*/
@@ -96,10 +97,12 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
                 LayoutParams.WRAP_CONTENT);
         buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
         buttonLayout.setLayoutParams(buttonparams);
+        buttonLayout.setGravity(Gravity.CENTER_HORIZONTAL);
         buttonLayout.setBackgroundColor(Color.WHITE);
         for (int i = 0; i < buttonItem.size(); i++) {
             ButtonItem buttonitem = buttonItem.get(i);
             buttonLayout.addView(getItemView(buttonitem));
+
         }
         buttonLayout.setBackground(getResources().getDrawable(R.drawable.normal));
 
@@ -119,11 +122,13 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
         LinearLayout layout = new LinearLayout(mContext);
             LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT);
+        params1.setMargins(DensityUtil.px2dip(mContext,20), DensityUtil.px2dip(mContext,20),
+                DensityUtil.px2dip(mContext,20), DensityUtil.px2dip(mContext,20));
         layout.setOrientation(LinearLayout.HORIZONTAL);
         layout.setLayoutParams(params1);
-        layout.setPadding(DensityUtil.px2dip(mContext,10), DensityUtil.px2dip(mContext,10),
-                DensityUtil.px2dip(mContext,10), DensityUtil.px2dip(mContext,10));
-
+       /* 边距*/
+//        layout.setPadding(DensityUtil.px2dip(mContext,20), DensityUtil.px2dip(mContext,10),
+//                DensityUtil.px2dip(mContext,20), DensityUtil.px2dip(mContext,10));
         Button button = new Button(mContext);
         button.setText(buttonitem.getButtonName());
         button.setTextSize(buttonitem.getButtonSize());
@@ -140,9 +145,8 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
             button.setText(buttonitem.getCheckName());
         }
         button.setBackground(null);
-        LayoutParams buttonParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        button.setLayoutParams(buttonParams);
-
+//        LayoutParams buttonParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+//        button.setLayoutParams(buttonParams);
         button.setBackground(getResources().getDrawable(R.drawable.selector));
         layout.addView(button);
 
