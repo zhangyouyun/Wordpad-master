@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
 //--------------------------
         ButtonItem buttonItem3 = new ButtonItem();
         buttonItem3.setButtonName("撤销");
-        buttonItem3.setButtonSize(font);
+//        buttonItem3.setButtonSize(font);
         buttonItem3.setButtonColor(Color.BLACK);
         buttonItem3.setId(4);
 //        buttonItem3.setButtonHeight(180);
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
 //--------------------------
         ButtonItem buttonItem4 = new ButtonItem();
         buttonItem4.setButtonName("清空");
-        buttonItem4.setButtonSize(font);
+//        buttonItem4.setButtonSize(font);
         buttonItem4.setButtonColor(Color.BLACK);
         buttonItem4.setId(5);
 //        buttonItem4.setButtonHeight(180);
@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
         ButtonItem buttonItem5 = new ButtonItem();
         buttonItem5.setButtonName("橡皮");
 //        buttonItem5.setCheckName("画笔");
-        buttonItem5.setButtonSize(font);
+//        buttonItem5.setButtonSize(font);
         buttonItem5.setButtonColor(Color.BLACK);
         buttonItem5.setId(6);
 //        buttonItem5.setButtonHeight(180);
@@ -103,7 +103,7 @@ public class MainActivity extends Activity {
 
         ButtonItem buttonItem6 = new ButtonItem();
         buttonItem6.setButtonName("恢复");
-        buttonItem6.setButtonSize(font);
+//        buttonItem6.setButtonSize(font);
         buttonItem6.setButtonColor(Color.BLACK);
         buttonItem6.setId(7);
 //        buttonItem6.setButtonHeight(180);
@@ -112,7 +112,7 @@ public class MainActivity extends Activity {
 
         ButtonItem buttonItem7 = new ButtonItem();
         buttonItem7.setButtonName("画笔");
-        buttonItem7.setButtonSize(font);
+//        buttonItem7.setButtonSize(font);
         buttonItem7.setButtonColor(Color.BLACK);
         buttonItem7.setId(8);
 //        buttonItem7.setButtonHeight(180);
@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
 
         ButtonItem buttonItem8 = new ButtonItem();
         buttonItem8.setButtonName("上次");
-        buttonItem8.setButtonSize(font);
+//        buttonItem8.setButtonSize(font);
         buttonItem8.setButtonColor(Color.BLACK);
         buttonItem8.setId(9);
 //        buttonItem8.setButtonHeight(180);

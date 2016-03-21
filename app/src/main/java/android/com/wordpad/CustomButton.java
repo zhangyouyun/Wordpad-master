@@ -95,14 +95,14 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
         }
         buttonLayout.setBackground(getResources().getDrawable(R.drawable.normal));
 
-//        /*滚动条*/
-//        HorizontalScrollView horizontalScrollView = new HorizontalScrollView(mContext);
-//        horizontalScrollView.setLayoutParams(ScrollView);
-////        horizontalScrollView.setSmoothScrollingEnabled(true);
-//        horizontalScrollView.setFillViewport(true);
-//        horizontalScrollView.addView(buttonLayout);
+        /*滚动条*/
+        HorizontalScrollView horizontalScrollView = new HorizontalScrollView(mContext);
+        horizontalScrollView.setLayoutParams(ScrollView);
+        horizontalScrollView.setSmoothScrollingEnabled(true);
+        horizontalScrollView.setFillViewport(true);
+        horizontalScrollView.addView(buttonLayout);
 
-        this.addView(buttonLayout);
+        this.addView(horizontalScrollView);
         this.addView(mPaintView);
     }
 
@@ -112,9 +112,9 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
             LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT,1.0F);
          /* 边距*/
-//        params1.setMargins(DensityUtil.px2dip(mContext, 3), DensityUtil.px2dip(mContext, 3),
-//                DensityUtil.px2dip(mContext, 3), DensityUtil.px2dip(mContext, 3));
-//        layout.setOrientation(LinearLayout.HORIZONTAL);
+        params1.setMargins(DensityUtil.px2dip(mContext, 3), DensityUtil.px2dip(mContext, 3),
+                DensityUtil.px2dip(mContext, 3), DensityUtil.px2dip(mContext, 3));
+        layout.setOrientation(LinearLayout.HORIZONTAL);
         layout.setGravity(Gravity.CENTER);
         layout.setLayoutParams(params1);
 
