@@ -73,7 +73,7 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
 //        this.setOrientation(LinearLayout.VERTICAL);
 //        this.setLayoutParams(params);
 //        this.setBackgroundColor(Color.WHITE);
-
+        /*获取屏幕宽高*/
         WindowManager manager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(dm);
@@ -107,6 +107,7 @@ public class CustomButton extends LinearLayout implements View.OnClickListener {
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(mContext);
         horizontalScrollView.setLayoutParams(ScrollView);
         horizontalScrollView.setSmoothScrollingEnabled(true);
+        horizontalScrollView.setFillViewport(true);
         horizontalScrollView.addView(buttonLayout);
 
         this.addView(horizontalScrollView);
